@@ -1,0 +1,10 @@
+.env
+build
+node_modules
+.idea
+.vite
+$vite.config.ts
+.yarn
+*storybook.log
+$vite.config.ts*
+storybook-static

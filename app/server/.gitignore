@@ -1,0 +1,16 @@
+/build
+/client
+config.yml
+users.yml
+database
+database-shm
+database-wal
+database-key
+database-pep
+database-backups
+server.key
+$mod.ts
+
+/icon.png
+/background.png
+chrome
