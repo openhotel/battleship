@@ -1,0 +1,18 @@
+{
+  "tasks": {
+    "start": "yarn start"
+  },
+  "imports": {
+    "@std/path": "jsr:@std/path@1.1.4",
+    "shared/components": "./src/shared/components/index.ts",
+    "shared/hooks": "./src/shared/hooks/index.ts",
+    "shared/consts": "./src/shared/consts/index.ts",
+    "shared/types": "./src/shared/types/index.ts",
+    "shared/utils": "./src/shared/utils/index.ts",
+    "shared/enums": "./src/shared/enums/index.ts",
+    "modules/application": "./src/modules/application/index.ts",
+    "modules/router": "./src/modules/router/index.ts",
+    "modules/sandbox": "./src/modules/sandbox/index.ts",
+    "modules/test": "./src/modules/test/index.ts"
+  }
+}

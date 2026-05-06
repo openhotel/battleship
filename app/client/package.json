@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "CC BY-NC-SA 4.0",
   "scripts": {
-    "start": "vite --host",
+    "start": "vite --host & deno run -A --watch=./_development.ts ./_development.ts",
     "storybook": "storybook dev -p 7007",
     "link:pixi-components": "npm link @openhotel/pixi-components --force",
     "storybook:build": "storybook build --debug --test",

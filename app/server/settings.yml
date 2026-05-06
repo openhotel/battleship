@@ -1,8 +1,8 @@
 version: development
 name: Battleship
 repo: openhotel/battleship
-kickFromCurrentRoom: true
+kickFromCurrentRoom: false
 screen: windowed
 windowSize:
-  width: 200
-  height: 150
+  width: 294
+  height: 165

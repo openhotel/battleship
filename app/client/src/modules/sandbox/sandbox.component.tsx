@@ -1,71 +1,41 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import {
   ContainerComponent,
   Cursor,
   EventMode,
-  GraphicsComponent,
-  GraphicType,
-  useWindow,
+  FLEX_ALIGN,
+  FLEX_JUSTIFY,
+  FlexContainerComponent,
 } from "@openhotel/pixi-components";
-import { TextComponent } from "shared/components";
-import { getRandomNumber } from "shared/utils";
+import { LoopBarComponent, TextComponent } from "shared/components";
 import { useProxy } from "shared/hooks";
-import { Event } from "shared/enums";
-
-const MAX_COUNT = 10;
+import { GREEN_COLOR } from "shared/consts";
 
 export const SandboxComponent: React.FC = () => {
-  const { emit, ready, exit, on } = useProxy();
-  const { setSize } = useWindow();
-  const [count, setCount] = useState(0);
+  const { emit, exit } = useProxy();
 
-  const onClick = useCallback(() => {
-    setCount((count) => count + 1);
-    emit(Event.CLICK, { foo: "faa" });
-  }, [setCount, emit]);
-
-  useEffect(() => {
-    on("$$settings" as any, (config) => {
-      if (config.screen === "windowed") {
-        setSize(config.windowSize);
-      }
-    });
-  }, [on, setSize]);
-
-  useEffect(() => {
-    ready();
-  }, [ready]);
-
-  if (count >= MAX_COUNT) return <TextComponent text="Thanks 4 playing!" />;
-
+  console.log("?");
   return (
-    <>
-      <ContainerComponent
-        eventMode={EventMode.STATIC}
-        cursor={Cursor.POINTER}
-        onPointerDown={onClick}
+    <ContainerComponent eventMode={EventMode.STATIC} cursor={Cursor.POINTER}>
+      {/*<GraphicsComponent*/}
+      {/*  type={GraphicType.RECTANGLE}*/}
+      {/*  width={(50 * (MAX_COUNT - count)) / MAX_COUNT}*/}
+      {/*  height={(50 * (MAX_COUNT - count)) / MAX_COUNT}*/}
+      {/*  tint={0x6abe30}*/}
+      {/*  position={{*/}
+      {/*    x: count ? getRandomNumber(0, 100) : 0,*/}
+      {/*    y: count ? getRandomNumber(0, 100) : 0,*/}
+      {/*  }}*/}
+      {/*/>*/}
+
+      <FlexContainerComponent
+        align={FLEX_ALIGN.CENTER}
+        justify={FLEX_JUSTIFY.CENTER}
+        direction="y"
       >
-        {/*<GraphicsComponent*/}
-        {/*  type={GraphicType.RECTANGLE}*/}
-        {/*  width={(50 * (MAX_COUNT - count)) / MAX_COUNT}*/}
-        {/*  height={(50 * (MAX_COUNT - count)) / MAX_COUNT}*/}
-        {/*  tint={0x6abe30}*/}
-        {/*  position={{*/}
-        {/*    x: count ? getRandomNumber(0, 100) : 0,*/}
-        {/*    y: count ? getRandomNumber(0, 100) : 0,*/}
-        {/*  }}*/}
-        {/*/>*/}
-        <TextComponent text={`Your turn!`} tint={0x6abe30} />
-      </ContainerComponent>
-      <TextComponent
-        eventMode={EventMode.STATIC}
-        cursor={Cursor.POINTER}
-        onPointerDown={exit}
-        position={{
-          x: 150,
-        }}
-        text={"close game"}
-      />
-    </>
+        <TextComponent text="Searching for a match..." pivot={{ y: 4 }} />
+        <LoopBarComponent />
+      </FlexContainerComponent>
+    </ContainerComponent>
   );
 };

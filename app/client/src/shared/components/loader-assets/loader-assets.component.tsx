@@ -68,7 +68,7 @@ export const LoaderAssetsComponent: React.FC<Props> = ({
           >
             <TextComponent text={currentText} pivot={{ y: 4 }} />
             <LoadingBarComponent
-              width={200}
+              width={100}
               height={10}
               percentage={currentPercentageRef.current}
             />
