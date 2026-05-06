@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import { AppComponent, CoreLoaderComponent } from "modules/application";
 import { NesterComponent } from "shared/components";
-import { SandboxComponent } from "modules/sandbox";
 import { InitialLoaderComponent, StartComponent } from "./components";
 import {
   AssetsProvider,
@@ -9,6 +8,7 @@ import {
   ProxyProvider,
   TasksProvider,
 } from "shared/hooks";
+import { MatchComponent } from "modules/match";
 
 export const ApplicationComponent = () => {
   const providers = useMemo(
@@ -25,7 +25,7 @@ export const ApplicationComponent = () => {
       TasksProvider,
       //|\\|//|\\|//|\\|//|\\|//|\\|//|\\|//|\\|
       //|\\|//|\\|//|\\|//|\\|//|\\|//|\\|//|\\|
-      SandboxComponent,
+      MatchComponent,
     ],
     [],
   );

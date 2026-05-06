@@ -25,5 +25,9 @@
     "@std/cli/parse-args": "jsr:@std/cli/parse-args",
     "vite": "npm:vite@5.2.14"
   },
-  "nodeModulesDir": "auto"
+  "nodeModulesDir": "auto",
+  "allowScripts": {
+    "allow": [],
+    "deny": ["npm:cbor-extract@2.2.0", "npm:esbuild@0.20.2", "npm:esbuild@0.25.12", "npm:fsevents@2.3.3"]
+  }
 }

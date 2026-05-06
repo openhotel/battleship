@@ -4,6 +4,7 @@
 export * from "./loader";
 export * from "./loader-assets";
 export * from "./loading-bar";
+export * from "./logo";
 export * from "./loop-bar";
 export * from "./nester";
 export * from "./text";
