@@ -48,7 +48,7 @@ export const LoopBarComponent: React.FC<Props> = ({
     });
 
     return () => removeTask();
-  }, [setXPosition, width]);
+  }, [setXPosition, addTask, width]);
 
   return useMemo(
     () => (

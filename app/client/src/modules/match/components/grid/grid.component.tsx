@@ -1,6 +1,8 @@
 import React, { useMemo } from "react";
 import {
   ContainerComponent,
+  Cursor,
+  EventMode,
   SpriteComponent,
 } from "@openhotel/pixi-components";
 import { SpriteSheetEnum } from "shared/enums";
@@ -21,6 +23,8 @@ export const GridComponent: React.FC = () => {
               x: x * 17,
               y: y * 17,
             }}
+            cursor={Cursor.POINTER}
+            eventMode={EventMode.STATIC}
             spriteSheet={SpriteSheetEnum.SPRITE}
           />,
         );
@@ -39,6 +43,8 @@ export const GridComponent: React.FC = () => {
             pivot={{
               x: 18,
             }}
+            cursor={Cursor.POINTER}
+            eventMode={EventMode.STATIC}
             spriteSheet={SpriteSheetEnum.SPRITE}
           />,
         );
@@ -52,6 +58,8 @@ export const GridComponent: React.FC = () => {
             x: x * 17,
             y: y * 17,
           }}
+          cursor={Cursor.POINTER}
+          eventMode={EventMode.STATIC}
           spriteSheet={SpriteSheetEnum.SPRITE}
         />,
       );
