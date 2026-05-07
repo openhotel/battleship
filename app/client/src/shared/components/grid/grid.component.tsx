@@ -1,18 +1,33 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import {
   ContainerComponent,
   Cursor,
   EventMode,
+  Point,
   SpriteComponent,
 } from "@openhotel/pixi-components";
 import { SpriteSheetEnum } from "shared/enums";
 
-export const GridComponent: React.FC = () => {
-  const renderSide = useMemo(() => {
+type Props = {
+  onClickLeft?: (point: Point) => void;
+  onClickRight?: (point: Point) => void;
+  leftInteractive?: boolean;
+  rightInteractive?: boolean;
+};
+
+export const GridComponent: React.FC<Props> = ({
+  onClickLeft,
+  onClickRight,
+  leftInteractive = false,
+  rightInteractive = false,
+}) => {
+  const renderSide = useCallback((onPointerDown, interactive: boolean) => {
     let list = [];
     for (let i = 0; i < 8 * 8; i++) {
       let x = i % 8;
       let y = Math.trunc(i / 8);
+
+      const onClick = () => onPointerDown({ x, y });
 
       if (x === 0 && y === 0) {
         list.push(
@@ -23,8 +38,9 @@ export const GridComponent: React.FC = () => {
               x: x * 17,
               y: y * 17,
             }}
-            cursor={Cursor.POINTER}
-            eventMode={EventMode.STATIC}
+            onPointerDown={onClick}
+            cursor={interactive ? Cursor.POINTER : null}
+            eventMode={interactive ? EventMode.STATIC : null}
             spriteSheet={SpriteSheetEnum.SPRITE}
           />,
         );
@@ -43,8 +59,9 @@ export const GridComponent: React.FC = () => {
             pivot={{
               x: 18,
             }}
-            cursor={Cursor.POINTER}
-            eventMode={EventMode.STATIC}
+            onPointerDown={onClick}
+            cursor={interactive ? Cursor.POINTER : null}
+            eventMode={interactive ? EventMode.STATIC : null}
             spriteSheet={SpriteSheetEnum.SPRITE}
           />,
         );
@@ -58,8 +75,9 @@ export const GridComponent: React.FC = () => {
             x: x * 17,
             y: y * 17,
           }}
-          cursor={Cursor.POINTER}
-          eventMode={EventMode.STATIC}
+          onPointerDown={onClick}
+          cursor={interactive ? Cursor.POINTER : null}
+          eventMode={interactive ? EventMode.STATIC : null}
           spriteSheet={SpriteSheetEnum.SPRITE}
         />,
       );
@@ -85,6 +103,15 @@ export const GridComponent: React.FC = () => {
     return list;
   }, []);
 
+  const renderLeft = useMemo(
+    () => renderSide(onClickLeft, leftInteractive),
+    [renderSide, onClickLeft, leftInteractive],
+  );
+  const renderRight = useMemo(
+    () => renderSide(onClickRight, rightInteractive),
+    [renderSide, onClickRight, rightInteractive],
+  );
+
   return (
     <ContainerComponent
       position={{
@@ -92,7 +119,7 @@ export const GridComponent: React.FC = () => {
         y: 12,
       }}
     >
-      <ContainerComponent>{renderSide}</ContainerComponent>
+      <ContainerComponent>{renderLeft}</ContainerComponent>
       <SpriteComponent
         texture="square_middle"
         position={{
@@ -119,7 +146,7 @@ export const GridComponent: React.FC = () => {
           y: 17 * 8 + 1,
         }}
       >
-        {renderSide}
+        {renderRight}
       </ContainerComponent>
     </ContainerComponent>
   );

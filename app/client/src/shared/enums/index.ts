@@ -4,6 +4,7 @@
 export * from "./assets.enums.ts";
 export * from "./events.enums.ts";
 export * from "./language.enumts.ts";
+export * from "./ship.enums.ts";
 export * from "./sprite-sheet.enum.ts";
 export * from "./texture.enum.ts";
 ////////////////////////////////////////////////////////////////////////////////

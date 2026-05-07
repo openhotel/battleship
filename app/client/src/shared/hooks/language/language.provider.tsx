@@ -7,11 +7,11 @@ import HttpBackend from "i18next-http-backend";
 import i18next from "i18next";
 import { Language } from "shared/enums/language.enumts";
 
-type ConfigProps = {
+type LanguageProps = {
   children: ReactNode;
 };
 
-export const LanguageProvider: React.FunctionComponent<ConfigProps> = ({
+export const LanguageProvider: React.FunctionComponent<LanguageProps> = ({
   children,
 }) => {
   const { isDevelopment } = useConfig();

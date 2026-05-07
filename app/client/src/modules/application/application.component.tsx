@@ -7,8 +7,8 @@ import {
   LanguageProvider,
   ProxyProvider,
   TasksProvider,
+  GameProvider,
 } from "shared/hooks";
-import { MatchComponent } from "modules/match";
 
 export const ApplicationComponent = () => {
   const providers = useMemo(
@@ -25,7 +25,7 @@ export const ApplicationComponent = () => {
       TasksProvider,
       //|\\|//|\\|//|\\|//|\\|//|\\|//|\\|//|\\|
       //|\\|//|\\|//|\\|//|\\|//|\\|//|\\|//|\\|
-      MatchComponent,
+      GameProvider,
     ],
     [],
   );

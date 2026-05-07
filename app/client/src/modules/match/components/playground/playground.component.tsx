@@ -7,9 +7,9 @@ import {
   useWindow,
 } from "@openhotel/pixi-components";
 import { TextComponent } from "shared/components";
-import { LifeComponent } from "../life";
 import { ShipsComponent } from "../ships";
 import { PlaceShipsScreenComponent } from "../place-ships-screen";
+import { LifeComponent } from "shared/components/life";
 
 export const PlaygroundComponent: React.FC = () => {
   const { getSize } = useWindow();
@@ -18,7 +18,7 @@ export const PlaygroundComponent: React.FC = () => {
       <GridComponent />
       <PlaceShipsScreenComponent />
       <ShipsComponent />
-      <LifeComponent />
+      <LifeComponent leftLife={2} rightLife={3} />
       <ContainerComponent
         position={{
           y: 17 * 8 + 18,

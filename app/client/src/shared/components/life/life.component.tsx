@@ -7,10 +7,15 @@ import {
 import React, { useMemo } from "react";
 import { SpriteSheetEnum } from "shared/enums";
 
-export const LifeComponent: React.FC = () => {
+type Props = {
+  leftLife: number;
+  rightLife: number;
+};
+
+export const LifeComponent: React.FC<Props> = ({ leftLife, rightLife }) => {
   const renderLeft = useMemo(() => {
     let list = [];
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < leftLife; i++) {
       list.push(
         <SpriteComponent
           texture="ship_icon"
@@ -19,10 +24,10 @@ export const LifeComponent: React.FC = () => {
       );
     }
     return list;
-  }, []);
+  }, [leftLife]);
   const renderRight = useMemo(() => {
     let list = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < rightLife; i++) {
       list.push(
         <SpriteComponent
           texture="ship_icon"
@@ -35,7 +40,7 @@ export const LifeComponent: React.FC = () => {
       );
     }
     return list;
-  }, []);
+  }, [rightLife]);
 
   return (
     <ContainerComponent>

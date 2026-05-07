@@ -1,6 +1,7 @@
 import React from "react";
 import { ContainerComponent } from "@openhotel/pixi-components";
 import { ShipComponent } from "shared/components";
+import { ShipType, ShipDirection } from "shared/enums";
 
 export const ShipsComponent: React.FC = () => {
   return (
@@ -11,8 +12,8 @@ export const ShipsComponent: React.FC = () => {
       }}
     >
       <ShipComponent
-        type="big"
-        direction="bottom"
+        type={ShipType.BIG}
+        direction={ShipDirection.BOTTOM}
         selected
         position={{
           x: 1 * 17,

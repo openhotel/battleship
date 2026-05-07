@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { SpriteSheetEnum } from "shared/enums";
+import { SpriteSheetEnum, ShipDirection, ShipType } from "shared/enums";
 import {
   ContainerComponent,
   ContainerProps,
@@ -9,12 +9,13 @@ import {
   SpriteComponent,
 } from "@openhotel/pixi-components";
 import { GREEN_COLOR } from "../../consts";
-import { useTasks } from "../../hooks";
+import { useTasks } from "shared/hooks";
 import { TickerQueue } from "@oh/queue";
+import {} from "shared/enums/ship.enums.ts";
 
 type Props = {
-  type?: "small" | "medium" | "big";
-  direction?: "right" | "top" | "left" | "bottom";
+  type?: ShipType;
+  direction?: ShipDirection;
   selected?: boolean;
 } & ContainerProps;
 
@@ -40,8 +41,8 @@ const DIRECTION_TYPE_MAP = {
 };
 
 export const ShipComponent: React.FC<Props> = ({
-  type = "small",
-  direction = "right",
+  type = ShipType.SMALL,
+  direction = ShipDirection.BOTTOM,
   selected = false,
   ...containerProps
 }) => {
