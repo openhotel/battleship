@@ -4,117 +4,20 @@ import {
   ContainerComponent,
   FLEX_JUSTIFY,
   FlexContainerComponent,
-  GraphicsComponent,
-  GraphicType,
-  SpriteComponent,
   useWindow,
 } from "@openhotel/pixi-components";
-import { TextComponent, ShipComponent } from "shared/components";
-import { GREEN_COLOR } from "shared/consts";
-import { SpriteSheetEnum } from "shared/enums";
+import { TextComponent } from "shared/components";
 import { LifeComponent } from "../life";
+import { ShipsComponent } from "../ships";
+import { PlaceShipsScreenComponent } from "../place-ships-screen";
 
 export const PlaygroundComponent: React.FC = () => {
   const { getSize } = useWindow();
   return (
     <ContainerComponent>
       <GridComponent />
-      <ContainerComponent
-        position={{
-          x: 155,
-          y: 14,
-        }}
-      >
-        <GraphicsComponent
-          type={GraphicType.RECTANGLE}
-          width={133}
-          height={133}
-          tint={0}
-        />
-        <GraphicsComponent
-          type={GraphicType.RECTANGLE}
-          width={131}
-          height={131}
-          position={{
-            x: 1,
-            y: 1,
-          }}
-          tint={GREEN_COLOR}
-        />
-        <GraphicsComponent
-          type={GraphicType.RECTANGLE}
-          width={129}
-          height={129}
-          position={{
-            x: 2,
-            y: 2,
-          }}
-          tint={0}
-        />
-      </ContainerComponent>
-      <ContainerComponent
-        position={{
-          x: 6,
-          y: 14,
-        }}
-      >
-        <ShipComponent
-          type="big"
-          direction="bottom"
-          position={{
-            x: 1 * 17,
-            y: 1 * 17,
-          }}
-        />
-        <ShipComponent
-          type="small"
-          direction="right"
-          position={{
-            x: 4 * 17,
-            y: 1 * 17,
-          }}
-        />
-        <SpriteComponent
-          texture="explosion"
-          spriteSheet={SpriteSheetEnum.SPRITE}
-          position={{
-            x: 1 * 17,
-            y: 1 * 17,
-          }}
-        />
-        <SpriteComponent
-          texture="explosion"
-          spriteSheet={SpriteSheetEnum.SPRITE}
-          position={{
-            x: 1 * 17,
-            y: 2 * 17,
-          }}
-        />
-        <SpriteComponent
-          texture="explosion"
-          spriteSheet={SpriteSheetEnum.SPRITE}
-          position={{
-            x: 1 * 17,
-            y: 3 * 17,
-          }}
-        />
-        <SpriteComponent
-          texture="explosion"
-          spriteSheet={SpriteSheetEnum.SPRITE}
-          position={{
-            x: 1 * 17,
-            y: 4 * 17,
-          }}
-        />
-        <SpriteComponent
-          texture="water"
-          spriteSheet={SpriteSheetEnum.SPRITE}
-          position={{
-            x: 3 * 17,
-            y: 2 * 17,
-          }}
-        />
-      </ContainerComponent>
+      <PlaceShipsScreenComponent />
+      <ShipsComponent />
       <LifeComponent />
       <ContainerComponent
         position={{
