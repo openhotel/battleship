@@ -1,13 +1,6 @@
 import React from "react";
-import {
-  ContainerComponent,
-  GraphicsComponent,
-  GraphicType,
-  SpriteComponent,
-} from "@openhotel/pixi-components";
+import { ContainerComponent } from "@openhotel/pixi-components";
 import { ShipComponent } from "shared/components";
-import { SpriteSheetEnum } from "shared/enums";
-import { GREEN_COLOR } from "../../../../shared/consts";
 
 export const ShipsComponent: React.FC = () => {
   return (
