@@ -1,10 +1,4 @@
-import React, {
-  ReactNode,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { ReactNode, useCallback, useEffect, useState } from "react";
 import { GameContext } from "./game.context";
 import { PlaceShipsComponent } from "modules/place-ships";
 import { Ship } from "shared/types";
@@ -55,9 +49,11 @@ export const GameProvider: React.FunctionComponent<GameProps> = ({
     initMyShips();
   }, [initMyShips]);
 
-  const lockedPositions = useMemo(
-    () =>
-      myShips.filter((ship) => ship.position).flatMap(getShipTargetPositions),
+  const getLockedPositions = useCallback(
+    (shipId: string) =>
+      myShips
+        .filter((ship) => ship.id !== shipId && ship.position)
+        .flatMap(getShipTargetPositions),
     [myShips],
   );
 
@@ -68,7 +64,7 @@ export const GameProvider: React.FunctionComponent<GameProps> = ({
         updateMyShip,
         previewShipId,
         setPreviewShipId,
-        lockedPositions,
+        getLockedPositions,
       }}
       children={<PlaceShipsComponent />}
     />

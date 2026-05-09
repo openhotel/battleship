@@ -7,7 +7,7 @@ export type GameState = {
   updateMyShip: (ship: Partial<Ship>) => void;
   previewShipId: string;
   setPreviewShipId: (id: string) => void;
-  lockedPositions: Point[];
+  getLockedPositions: (ignoreShip: string) => Point[];
 };
 
 export const GameContext = React.createContext<GameState>(undefined);

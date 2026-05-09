@@ -29,3 +29,14 @@ export const isAnyPositionOutOfBounds = (positions: Point[]): boolean =>
       point.x >= GRID_SIZE ||
       point.y >= GRID_SIZE,
   );
+
+export const arePositionsInsidePositions = (
+  currentPositions: Point[],
+  positions: Point[],
+): boolean =>
+  currentPositions.some((currentPosition) =>
+    positions.some(
+      (position) =>
+        currentPosition.x === position.x && currentPosition.y === position.y,
+    ),
+  );

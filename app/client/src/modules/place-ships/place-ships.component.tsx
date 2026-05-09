@@ -12,6 +12,7 @@ import { GridComponent, ShipComponent, TextComponent } from "shared/components";
 import { ShipsScreensComponent } from "./components";
 import { useGame } from "shared/hooks";
 import {
+  arePositionsInsidePositions,
   getNextClockwiseDirection,
   getShipTargetPositions,
   getTextFirstLetterUpperCase,
@@ -21,7 +22,13 @@ import { Ship } from "shared/types";
 
 export const PlaceShipsComponent: React.FC = () => {
   const { getSize } = useWindow();
-  const { previewShipId, updateMyShip, myShips, setPreviewShipId } = useGame();
+  const {
+    previewShipId,
+    updateMyShip,
+    myShips,
+    setPreviewShipId,
+    getLockedPositions,
+  } = useGame();
 
   const onClickPreviewShip = useCallback(
     (ship: Ship) => () => setPreviewShipId(ship.id),
@@ -72,17 +79,27 @@ export const PlaceShipsComponent: React.FC = () => {
     setPreviewShipId(null);
   }, [setPreviewShipId]);
 
+  const lockedPositions = useMemo(
+    () => getLockedPositions(previewShipId),
+    [getLockedPositions, previewShipId],
+  );
+
   const onClickGrid = useCallback(
     (position: Point) => {
       const targetShip = {
         ...selectedShip,
         position,
       };
-      if (isAnyPositionOutOfBounds(getShipTargetPositions(targetShip))) return;
+      const targetShipPositions = getShipTargetPositions(targetShip);
+      if (
+        isAnyPositionOutOfBounds(targetShipPositions) ||
+        arePositionsInsidePositions(lockedPositions, targetShipPositions)
+      )
+        return;
 
       updateMyShip(targetShip);
     },
-    [selectedShip, updateMyShip],
+    [selectedShip, updateMyShip, lockedPositions],
   );
 
   const onRotateSelectedShip = useCallback(() => {
@@ -90,10 +107,15 @@ export const PlaceShipsComponent: React.FC = () => {
       ...selectedShip,
       direction: getNextClockwiseDirection(selectedShip.direction),
     };
-    if (isAnyPositionOutOfBounds(getShipTargetPositions(targetShip))) return;
+    const targetShipPositions = getShipTargetPositions(targetShip);
+    if (
+      isAnyPositionOutOfBounds(targetShipPositions) ||
+      arePositionsInsidePositions(lockedPositions, targetShipPositions)
+    )
+      return;
 
     updateMyShip(targetShip);
-  }, [selectedShip]);
+  }, [selectedShip, lockedPositions]);
 
   return (
     <ContainerComponent>
@@ -168,7 +190,7 @@ export const PlaceShipsComponent: React.FC = () => {
               />
             ) : (
               <TextComponent
-                text={`Ready to play!`}
+                text={`Ready to play?`}
                 eventMode={EventMode.STATIC}
                 cursor={Cursor.POINTER}
               />
