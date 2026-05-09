@@ -1,10 +1,4 @@
-import React, {
-  ReactNode,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { ReactNode, useCallback, useEffect, useState } from "react";
 import { GameContext } from "./game.context";
 import { PlaceShipsComponent } from "modules/place-ships";
 import { Ship } from "shared/types";

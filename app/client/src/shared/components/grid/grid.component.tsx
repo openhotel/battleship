@@ -27,7 +27,7 @@ export const GridComponent: React.FC<Props> = ({
       let x = i % 8;
       let y = Math.trunc(i / 8);
 
-      const onClick = () => onPointerDown({ x, y });
+      const onClick = (event) => onPointerDown({ x, y });
 
       if (x === 0 && y === 0) {
         list.push(
