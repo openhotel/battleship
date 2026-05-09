@@ -3,6 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 export * from "./direction.utils.ts";
 export * from "./environment.utils.ts";
+export * from "./position.utils.ts";
 export * from "./random.utils.ts";
 export * from "./socket.utils.ts";
 export * from "./text.utils.ts";

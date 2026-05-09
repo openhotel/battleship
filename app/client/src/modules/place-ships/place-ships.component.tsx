@@ -13,23 +13,15 @@ import { ShipsScreensComponent } from "./components";
 import { useGame } from "shared/hooks";
 import {
   getNextClockwiseDirection,
+  getShipTargetPositions,
   getTextFirstLetterUpperCase,
-} from "../../shared/utils";
-import { Ship } from "../../shared/types";
+  isAnyPositionOutOfBounds,
+} from "shared/utils";
+import { Ship } from "shared/types";
 
 export const PlaceShipsComponent: React.FC = () => {
   const { getSize } = useWindow();
   const { previewShipId, updateMyShip, myShips, setPreviewShipId } = useGame();
-
-  const onClickGrid = useCallback(
-    (position: Point) => {
-      updateMyShip({
-        id: previewShipId,
-        position,
-      });
-    },
-    [previewShipId, updateMyShip],
-  );
 
   const onClickPreviewShip = useCallback(
     (ship: Ship) => () => setPreviewShipId(ship.id),
@@ -80,11 +72,27 @@ export const PlaceShipsComponent: React.FC = () => {
     setPreviewShipId(null);
   }, [setPreviewShipId]);
 
+  const onClickGrid = useCallback(
+    (position: Point) => {
+      const targetShip = {
+        ...selectedShip,
+        position,
+      };
+      if (isAnyPositionOutOfBounds(getShipTargetPositions(targetShip))) return;
+
+      updateMyShip(targetShip);
+    },
+    [selectedShip, updateMyShip],
+  );
+
   const onRotateSelectedShip = useCallback(() => {
-    updateMyShip({
-      id: selectedShip.id,
+    const targetShip = {
+      ...selectedShip,
       direction: getNextClockwiseDirection(selectedShip.direction),
-    });
+    };
+    if (isAnyPositionOutOfBounds(getShipTargetPositions(targetShip))) return;
+
+    updateMyShip(targetShip);
   }, [selectedShip]);
 
   return (

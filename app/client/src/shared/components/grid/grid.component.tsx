@@ -7,6 +7,7 @@ import {
   SpriteComponent,
 } from "@openhotel/pixi-components";
 import { SpriteSheetEnum } from "shared/enums";
+import { GRID_SIZE } from "shared/consts";
 
 type Props = {
   onClickLeft?: (point: Point) => void;
@@ -23,9 +24,9 @@ export const GridComponent: React.FC<Props> = ({
 }) => {
   const renderSide = useCallback((onPointerDown, interactive: boolean) => {
     let list = [];
-    for (let i = 0; i < 8 * 8; i++) {
-      let x = i % 8;
-      let y = Math.trunc(i / 8);
+    for (let i = 0; i < GRID_SIZE * GRID_SIZE; i++) {
+      let x = i % GRID_SIZE;
+      let y = Math.trunc(i / GRID_SIZE);
 
       const onClick = (event) => onPointerDown({ x, y });
 
@@ -46,7 +47,7 @@ export const GridComponent: React.FC<Props> = ({
         );
         continue;
       }
-      if (x === 0 && y === 7) {
+      if (x === 0 && y === GRID_SIZE - 1) {
         list.push(
           <SpriteComponent
             key={"corner_" + i}
@@ -87,7 +88,7 @@ export const GridComponent: React.FC<Props> = ({
 
   const renderMiddle = useMemo(() => {
     let list = [];
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < GRID_SIZE; i++) {
       list.push(
         <SpriteComponent
           key={`middle_${i}`}
@@ -123,14 +124,14 @@ export const GridComponent: React.FC<Props> = ({
       <SpriteComponent
         texture="square_middle"
         position={{
-          x: 8 * 17,
+          x: GRID_SIZE * 17,
           y: 0 * 17,
         }}
         spriteSheet={SpriteSheetEnum.SPRITE}
       />
       <ContainerComponent
         position={{
-          x: 8 * 17,
+          x: GRID_SIZE * 17,
         }}
       >
         {renderMiddle}
@@ -139,11 +140,11 @@ export const GridComponent: React.FC<Props> = ({
       <ContainerComponent
         angle={180}
         position={{
-          x: 17 * 8 + 1 + 12,
+          x: 17 * GRID_SIZE + 1 + 12,
         }}
         pivot={{
-          x: 17 * 8 + 1,
-          y: 17 * 8 + 1,
+          x: 17 * GRID_SIZE + 1,
+          y: 17 * GRID_SIZE + 1,
         }}
       >
         {renderRight}
