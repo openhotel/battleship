@@ -4,5 +4,6 @@
 export * from "./app";
 export * from "./core-loader";
 export * from "./initial-loader";
+export * from "./navigator";
 export * from "./start";
 ////////////////////////////////////////////////////////////////////////////////

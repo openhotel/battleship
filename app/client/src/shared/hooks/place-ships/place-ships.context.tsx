@@ -2,7 +2,7 @@ import React from "react";
 import { Ship } from "shared/types";
 import { Point } from "@openhotel/pixi-components";
 
-export type GameState = {
+export type PlaceShipsState = {
   myShips: Ship[];
   updateMyShip: (ship: Partial<Ship>) => void;
   previewShipId: string;
@@ -11,4 +11,5 @@ export type GameState = {
   onReady: () => void;
 };
 
-export const GameContext = React.createContext<GameState>(undefined);
+export const PlaceShipsContext =
+  React.createContext<PlaceShipsState>(undefined);

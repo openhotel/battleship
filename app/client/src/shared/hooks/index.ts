@@ -4,7 +4,7 @@
 export * from "./assets";
 export * from "./game";
 export * from "./language";
-export * from "./match";
+export * from "./place-ships";
 export * from "./proxy";
 export * from "./tasks";
 ////////////////////////////////////////////////////////////////////////////////

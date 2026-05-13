@@ -1,5 +1,9 @@
 import React, { useMemo } from "react";
-import { AppComponent, CoreLoaderComponent } from "modules/application";
+import {
+  AppComponent,
+  CoreLoaderComponent,
+  NavigatorComponent,
+} from "modules/application";
 import { NesterComponent } from "shared/components";
 import { InitialLoaderComponent, StartComponent } from "./components";
 import {
@@ -7,7 +11,6 @@ import {
   LanguageProvider,
   ProxyProvider,
   TasksProvider,
-  GameProvider,
 } from "shared/hooks";
 
 export const ApplicationComponent = () => {
@@ -25,7 +28,7 @@ export const ApplicationComponent = () => {
       TasksProvider,
       //|\\|//|\\|//|\\|//|\\|//|\\|//|\\|//|\\|
       //|\\|//|\\|//|\\|//|\\|//|\\|//|\\|//|\\|
-      GameProvider,
+      NavigatorComponent,
     ],
     [],
   );

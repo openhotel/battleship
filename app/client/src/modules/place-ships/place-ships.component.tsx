@@ -10,7 +10,7 @@ import {
 } from "@openhotel/pixi-components";
 import { GridComponent, ShipComponent, TextComponent } from "shared/components";
 import { ShipsScreensComponent } from "./components";
-import { useGame } from "shared/hooks";
+import { usePlaceShips } from "shared/hooks";
 import {
   arePositionsInsidePositions,
   getNextClockwiseDirection,
@@ -28,7 +28,8 @@ export const PlaceShipsComponent: React.FC = () => {
     myShips,
     setPreviewShipId,
     getLockedPositions,
-  } = useGame();
+    onReady,
+  } = usePlaceShips();
 
   const onClickPreviewShip = useCallback(
     (ship: Ship) => () => setPreviewShipId(ship.id),
@@ -193,6 +194,7 @@ export const PlaceShipsComponent: React.FC = () => {
                 text={`Ready to play?`}
                 eventMode={EventMode.STATIC}
                 cursor={Cursor.POINTER}
+                onPointerDown={onReady}
               />
             )}
           </FlexContainerComponent>

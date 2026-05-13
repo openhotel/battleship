@@ -8,11 +8,11 @@ import {
 } from "@openhotel/pixi-components";
 import { GREEN_COLOR } from "shared/consts";
 import { ShipComponent } from "shared/components";
-import { useGame } from "shared/hooks";
+import { usePlaceShips } from "shared/hooks";
 import { Ship } from "shared/types";
 
 export const ShipsScreensComponent: React.FC = () => {
-  const { myShips, previewShipId, setPreviewShipId } = useGame();
+  const { myShips, previewShipId, setPreviewShipId } = usePlaceShips();
 
   const onPointerDownShip = useCallback(
     (ship: Ship) => () => {
