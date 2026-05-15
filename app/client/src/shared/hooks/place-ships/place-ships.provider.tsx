@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { PlaceShipsContext } from "./place-ships.context";
 import { PlaceShipsComponent } from "modules/place-ships";
 import { Ship } from "shared/types";
@@ -7,13 +7,9 @@ import { ulid } from "ulidx";
 import { ShipDirection } from "shared/enums";
 import { getShipTargetPositions } from "shared/utils";
 
-type GameProps = {
-  children: ReactNode;
-};
+type GameProps = {};
 
-export const PlaceShipsProvider: React.FunctionComponent<GameProps> = ({
-  children,
-}) => {
+export const PlaceShipsProvider: React.FunctionComponent<GameProps> = () => {
   const [myShips, setMyShips] = useState<Ship[]>([]);
   const [previewShipId, setPreviewShipId] = useState<string>(null);
 

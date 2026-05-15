@@ -1,17 +1,22 @@
-import React, { useEffect } from "react";
-import { useProxy } from "shared/hooks";
+import React, { useEffect, useState } from "react";
+import { PlaceShipsProvider, useProxy } from "shared/hooks";
 import { SearchForMatchComponent } from "modules/match";
 import { Event } from "shared/enums";
-
 export const NavigatorComponent: React.FC = () => {
   const { ready, on } = useProxy();
 
+  const [opponentAssigned, setOpponentAssigned] = useState<boolean>(false);
+
   useEffect(() => {
-    on(Event.CLICK, () => {
-    
+    on(Event.OPPONENT_ASSIGNED, () => {
+      setOpponentAssigned(true);
     });
     ready();
-  }, [ready, on]);
+  }, [ready, on, setOpponentAssigned]);
 
-  return <SearchForMatchComponent />;
+  return opponentAssigned ? (
+    <PlaceShipsProvider />
+  ) : (
+    <SearchForMatchComponent />
+  );
 };

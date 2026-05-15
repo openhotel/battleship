@@ -40,6 +40,8 @@ export const System = (() => {
     // await $internalProxy.load();
     console.log("GAME LOADED!");
     $worker.load();
+
+    $game.load();
   };
 
   const getEnvs = () => $envs;
@@ -64,6 +66,8 @@ export const System = (() => {
     isDebug,
 
     getGameId,
+
+    tasks: $tasks,
 
     game: $game,
     worker: $worker,

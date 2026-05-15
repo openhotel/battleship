@@ -27,8 +27,9 @@ export const users = () => {
       emit(Event.CLICK, { status: 200 });
     };
 
-    const ready = () => {
+    const ready = async () => {
       log("ready");
+      System.game.pool.addUser(user.accountId);
     };
 
     const emit = (event: Event, message?: any) => {
@@ -66,6 +67,8 @@ export const users = () => {
   };
 
   const remove = (accountId: string) => {
+    System.game.pool.removeUser(accountId);
+
     $userMap[accountId].log("left");
     delete $userMap[accountId];
   };
