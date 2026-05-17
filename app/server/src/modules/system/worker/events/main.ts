@@ -1,3 +1,3 @@
-import { clickEvent } from "./click.event.ts";
+import { readyPlacingEvent } from "./ready-placing.event.ts";
 
-export const eventList = [clickEvent];
+export const eventList = [readyPlacingEvent];

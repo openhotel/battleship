@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   ContainerComponent,
   Cursor,
@@ -29,7 +29,23 @@ export const PlaceShipsComponent: React.FC = () => {
     setPreviewShipId,
     getLockedPositions,
     onReady,
+    setRandomShipPositions,
   } = usePlaceShips();
+
+  const [timeout, setTimeout] = useState<number>(60);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeout((time) => {
+        if (time === 0) {
+          clearInterval(interval);
+          return 0;
+        }
+        return time - 1;
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [setTimeout]);
 
   const onClickPreviewShip = useCallback(
     (ship: Ship) => () => setPreviewShipId(ship.id),
@@ -118,8 +134,22 @@ export const PlaceShipsComponent: React.FC = () => {
     updateMyShip(targetShip);
   }, [selectedShip, lockedPositions]);
 
+  const onRandomize = useCallback(() => {
+    setRandomShipPositions();
+  }, [setRandomShipPositions]);
+
   return (
     <ContainerComponent>
+      <FlexContainerComponent
+        justify={FLEX_JUSTIFY.CENTER}
+        direction="x"
+        size={{ width: 137, height: 10 }}
+        position={{
+          x: 155,
+        }}
+      >
+        <TextComponent text={`${timeout}`} />
+      </FlexContainerComponent>
       <GridComponent
         leftInteractive={Boolean(previewShipId)}
         onClickLeft={onClickGrid}
@@ -181,10 +211,16 @@ export const PlaceShipsComponent: React.FC = () => {
           </>
         ) : (
           <FlexContainerComponent
-            justify={FLEX_JUSTIFY.CENTER}
+            justify={FLEX_JUSTIFY.SPACE_EVENLY}
             direction="x"
             size={{ width: getSize().width, height: 10 }}
           >
+            <TextComponent
+              text={`Randomize`}
+              eventMode={EventMode.STATIC}
+              cursor={Cursor.POINTER}
+              onPointerDown={onRandomize}
+            />
             {remainingShipsToPlace.length ? (
               <TextComponent
                 text={`Position your (${remainingShipsToPlace.length}) ships`}

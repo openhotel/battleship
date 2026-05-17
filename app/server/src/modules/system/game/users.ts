@@ -69,6 +69,8 @@ export const users = () => {
   const remove = (accountId: string) => {
     System.game.pool.removeUser(accountId);
 
+    System.game.matches.removeUser(accountId);
+
     $userMap[accountId].log("left");
     delete $userMap[accountId];
   };

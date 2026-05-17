@@ -8,6 +8,7 @@ export type PlaceShipsState = {
   previewShipId: string;
   setPreviewShipId: (id: string) => void;
   getLockedPositions: (ignoreShip: string) => Point[];
+  setRandomShipPositions: () => void;
   onReady: () => void;
 };
 

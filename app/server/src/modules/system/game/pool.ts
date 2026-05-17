@@ -1,4 +1,6 @@
 import { getRandomNumber } from "shared/utils/random.utils.ts";
+import { System } from "modules/system/main.ts";
+import { Event } from "shared/enums/event.enum.ts";
 
 export const pool = () => {
   let $userList: string[] = [];
@@ -6,6 +8,7 @@ export const pool = () => {
   const addUser = (accountId: string) => {
     if ($userList.includes(accountId)) return;
 
+    System.game.users.get(accountId).emit(Event.SEARCHING_MATCH);
     $userList.push(accountId);
   };
   const removeUser = (accountId: string) => {
