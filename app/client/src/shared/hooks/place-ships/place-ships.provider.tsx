@@ -2,8 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { PlaceShipsContext } from "./place-ships.context";
 import { PlaceShipsComponent } from "modules/place-ships";
 import { Ship } from "shared/types";
-import { INITIAL_AVAILABLE_SHIPS } from "shared/consts";
-import { Event, ShipDirection } from "shared/enums";
+import { Event, ShipDirection, ShipType } from "shared/enums";
 import {
   arePositionsInsidePositions,
   getRandomNumber,
@@ -13,7 +12,7 @@ import {
 import { useProxy } from "shared/hooks/proxy";
 
 type GameProps = {
-  ships: string[];
+  ships: [string, string][];
 };
 
 export const PlaceShipsProvider: React.FunctionComponent<GameProps> = ({
@@ -26,13 +25,16 @@ export const PlaceShipsProvider: React.FunctionComponent<GameProps> = ({
 
   const initMyShips = useCallback(() => {
     setMyShips(
-      INITIAL_AVAILABLE_SHIPS.map((type, index) => ({
-        id: ships[index],
-        index,
-        direction: ShipDirection.BOTTOM,
-        type,
-        position: null,
-      })),
+      ships.map(
+        ([id, type], index) =>
+          ({
+            id,
+            index,
+            direction: ShipDirection.BOTTOM,
+            type,
+            position: null,
+          }) as Ship,
+      ),
     );
   }, [setMyShips, ships]);
 

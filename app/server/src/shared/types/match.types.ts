@@ -8,9 +8,3 @@ export type MatchMutable = {
   stop: (userId: string) => void;
   getObject: () => Match;
 };
-
-export type MatchShip = {
-  id: string;
-  position?: [number, number];
-  direction?: number;
-};

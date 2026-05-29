@@ -45,7 +45,7 @@ export const PlaceShipsComponent: React.FC = () => {
       });
     }, 1000);
     return () => clearInterval(interval);
-  }, [setTimeout]);
+  }, [setTimeout, setRandomShipPositions]);
 
   const onClickPreviewShip = useCallback(
     (ship: Ship) => () => setPreviewShipId(ship.id),

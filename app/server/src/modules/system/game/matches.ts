@@ -1,15 +1,17 @@
 import { System } from "../main.ts";
 import { TickerQueue } from "@oh/queue";
-import { Match, MatchMutable, MatchShip } from "shared/types/match.types.ts";
+import { Match, MatchMutable } from "shared/types/match.types.ts";
+import { Ship } from "shared/types/ships.types.ts";
 import { Event } from "shared/enums/event.enum.ts";
 import { ulid } from "@std/ulid";
 import { UserMutable } from "shared/types/user.types.ts";
+import { INITIAL_SHIP_TYPES } from "shared/consts/ships.consts.ts";
 
 export const matches = () => {
   let $matchMap: Record<string, MatchMutable> = {};
 
   const $getMatch = (match: Match): MatchMutable => {
-    const ships: Record<string, MatchShip[]> = {};
+    const ships: Record<string, Ship[]> = {};
 
     let placingSipsDelayTaskId;
 
@@ -33,18 +35,22 @@ export const matches = () => {
         for (let i = 0; i < 6; i++) {
           ships[opponent.getAccountId()].push({
             id: ulid(),
+            type: INITIAL_SHIP_TYPES[i],
             direction: null,
             position: null,
           });
         }
         opponent.emit(Event.OPPONENT_ASSIGNED, {
-          ships: ships[opponent.getAccountId()].map((ship) => ship.id),
+          ships: ships[opponent.getAccountId()].map((ship) => [
+            ship.id,
+            ship.type,
+          ]),
         });
       });
 
       placingSipsDelayTaskId = System.tasks.add({
         type: TickerQueue.DELAY,
-        delay: 65_000,
+        delay: 62_000,
         onDone: () => {
           //TODO check if opponents have already placed ships, if not, match is done
         },
@@ -61,6 +67,8 @@ export const matches = () => {
       );
       System.game.pool.addUser(opponentId);
     };
+
+    const setShips = (opponentId: string, ships: Ship[]) => {};
 
     const getObject = (): Match => match;
 
