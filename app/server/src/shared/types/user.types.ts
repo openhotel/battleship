@@ -16,8 +16,4 @@ export type UserMutable = {
   ready: () => void;
   emit: (event: Event, message?: any) => void;
   close: () => void;
-
-  //
-
-  incrementClickCount: () => void;
 };

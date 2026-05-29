@@ -6,25 +6,11 @@ export const users = () => {
   let $userMap: Record<string, UserMutable> = {};
 
   const $getUser = (user: User): UserMutable => {
-    let clickCount = 0;
-
     const getAccountId = () => user.accountId;
     const getUsername = () => user.username;
 
     const log = (...data: string[]) => {
       console.log(`${getUsername()} ${data.join(" ")}`);
-    };
-
-    const incrementClickCount = () => {
-      clickCount++;
-      if (clickCount >= 10) {
-        System.worker.emit(ServerEvent.USER_REWARD, {
-          clientId: user.clientId,
-          amount: 10,
-        });
-        return close();
-      }
-      emit(Event.CLICK, { status: 200 });
     };
 
     const ready = async () => {
@@ -55,8 +41,6 @@ export const users = () => {
       ready,
       emit,
       close,
-
-      incrementClickCount,
     };
   };
 

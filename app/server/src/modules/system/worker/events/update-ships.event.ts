@@ -10,11 +10,6 @@ export const updateShipsEvent: EventType = {
     );
     if (!match) return;
 
-    //check ships are placed in a coherent way
-    const legalPositions = match.setShips(user.getAccountId(), data);
-    if (!legalPositions) {
-      match.stop(user.getAccountId());
-      user.close();
-    }
+    match.setShips(user.getAccountId(), data);
   },
 };

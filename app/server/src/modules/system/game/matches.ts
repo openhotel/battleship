@@ -11,7 +11,7 @@ export const matches = () => {
   let $matchMap: Record<string, MatchMutable> = {};
 
   const $getMatch = (match: Match): MatchMutable => {
-    const ships: Record<string, Ship[]> = {};
+    const $ships: Record<string, Ship[]> = {};
 
     let placingSipsDelayTaskId;
 
@@ -31,9 +31,9 @@ export const matches = () => {
       console.log(`match: ${opponent1} vs ${opponent2}`);
 
       opponents.forEach((opponent) => {
-        ships[opponent.getAccountId()] = [];
+        $ships[opponent.getAccountId()] = [];
         for (let i = 0; i < 6; i++) {
-          ships[opponent.getAccountId()].push({
+          $ships[opponent.getAccountId()].push({
             id: ulid(),
             type: INITIAL_SHIP_TYPES[i],
             direction: null,
@@ -41,7 +41,7 @@ export const matches = () => {
           });
         }
         opponent.emit(Event.OPPONENT_ASSIGNED, {
-          ships: ships[opponent.getAccountId()].map((ship) => [
+          ships: $ships[opponent.getAccountId()].map((ship) => [
             ship.id,
             ship.type,
           ]),
@@ -52,9 +52,16 @@ export const matches = () => {
         type: TickerQueue.DELAY,
         delay: 62_000,
         onDone: () => {
+          checkIfShipsAreValid();
           //TODO check if opponents have already placed ships, if not, match is done
         },
       });
+    };
+    const checkIfShipsAreValid = () => {
+      for (let opponent of getOpponents()) {
+        const ships = $ships[opponent.getAccountId()];
+        //check ships are length and type INITIAL_SHIP_TYPES
+      }
     };
 
     const stop = (userId?: string) => {
@@ -75,7 +82,17 @@ export const matches = () => {
     };
 
     const setShips = (opponentId: string, ships: Ship[]) => {
-      return false;
+      $ships[opponentId] = $ships[opponentId].map((ship) => {
+        const foundShip = ships.find(($ship) => $ship.id === ship.id);
+        //only update position and direction to prevent changing id, type, ...
+        return foundShip
+          ? {
+              ...ship,
+              position: foundShip.position,
+              direction: foundShip.direction,
+            }
+          : ship;
+      });
     };
 
     const getObject = (): Match => match;
