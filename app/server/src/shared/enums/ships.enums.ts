@@ -3,3 +3,10 @@ export enum ShipType {
   MEDIUM = "medium",
   BIG = "big",
 }
+
+export enum ShipDirection {
+  RIGHT = "right",
+  BOTTOM = "bottom",
+  LEFT = "left",
+  TOP = "top",
+}

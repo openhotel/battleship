@@ -10,6 +10,7 @@ import {
   isAnyPositionOutOfBounds,
 } from "shared/utils";
 import { useProxy } from "shared/hooks/proxy";
+import { useGame } from "../game";
 
 type GameProps = {
   ships: [string, string][];
@@ -19,18 +20,20 @@ export const PlaceShipsProvider: React.FunctionComponent<GameProps> = ({
   ships,
 }) => {
   const { emit } = useProxy();
+  const { setShips } = useGame();
 
   const [myShips, setMyShips] = useState<Ship[]>([]);
   const [previewShipId, setPreviewShipId] = useState<string>(null);
 
   useEffect(() => {
+    setShips(myShips);
     const toUpdateShips = myShips.filter((ship) => ship.position);
     if (!toUpdateShips.length) return;
 
     emit(Event.UPDATE_SHIPS, {
       ships: toUpdateShips,
     });
-  }, [myShips]);
+  }, [setShips, myShips]);
 
   const initMyShips = useCallback(() => {
     setMyShips(

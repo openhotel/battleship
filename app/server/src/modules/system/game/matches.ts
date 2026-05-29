@@ -6,6 +6,11 @@ import { Event } from "shared/enums/event.enum.ts";
 import { ulid } from "@std/ulid";
 import { UserMutable } from "shared/types/user.types.ts";
 import { INITIAL_SHIP_TYPES } from "shared/consts/ships.consts.ts";
+import {
+  arePositionsUnique,
+  getShipTargetPositions,
+  isAnyPositionOutOfBounds,
+} from "shared/utils/position.utils.ts";
 
 export const matches = () => {
   let $matchMap: Record<string, MatchMutable> = {};
@@ -52,16 +57,43 @@ export const matches = () => {
         type: TickerQueue.DELAY,
         delay: 62_000,
         onDone: () => {
-          checkIfShipsAreValid();
-          //TODO check if opponents have already placed ships, if not, match is done
+          const areShipsValid = checkIfShipsAreValid();
+          if (!areShipsValid) return stop();
+
+          broadcast(Event.OPPONENT_READY);
         },
       });
     };
     const checkIfShipsAreValid = () => {
+      let invalidOpponents: UserMutable[] = [];
+
       for (let opponent of getOpponents()) {
         const ships = $ships[opponent.getAccountId()];
         //check ships are length and type INITIAL_SHIP_TYPES
+        if (ships.length !== INITIAL_SHIP_TYPES.length) {
+          invalidOpponents.push(opponent);
+          continue;
+        }
+        // if any ship has no position neither direction
+        if (ships.find((ship) => !ship.position || !ship.direction)) {
+          invalidOpponents.push(opponent);
+          continue;
+        }
+
+        const shipsPositions = ships.flatMap(getShipTargetPositions);
+
+        if (isAnyPositionOutOfBounds(shipsPositions)) {
+          invalidOpponents.push(opponent);
+          continue;
+        }
+        if (!arePositionsUnique(shipsPositions)) {
+          invalidOpponents.push(opponent);
+          continue;
+        }
       }
+      for (const invalidOpponent of invalidOpponents) invalidOpponent.close();
+
+      return invalidOpponents.length === 0;
     };
 
     const stop = (userId?: string) => {

@@ -10,6 +10,6 @@ export const updateShipsEvent: EventType = {
     );
     if (!match) return;
 
-    match.setShips(user.getAccountId(), data);
+    match.setShips(user.getAccountId(), data.ships);
   },
 };

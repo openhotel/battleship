@@ -8,7 +8,7 @@ import { NesterComponent } from "shared/components";
 import { InitialLoaderComponent, StartComponent } from "./components";
 import {
   AssetsProvider,
-  LanguageProvider,
+  GameProvider,
   ProxyProvider,
   TasksProvider,
 } from "shared/hooks";
@@ -21,7 +21,7 @@ export const ApplicationComponent = () => {
       //|\\|//|\\|//|\\|//|\\|//|\\|//|\\|//|\\|
       InitialLoaderComponent,
       ProxyProvider,
-      LanguageProvider,
+      GameProvider,
       AssetsProvider,
       CoreLoaderComponent,
       StartComponent,

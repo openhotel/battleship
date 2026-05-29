@@ -1,7 +1,8 @@
-import { GRID_SIZE, SHIP_SIZE } from "../consts";
-import { ShipDirection } from "../enums";
-import { Point } from "@openhotel/pixi-components";
 import { Ship } from "shared/types/ships.types.ts";
+import { GRID_SIZE } from "../consts/grid.consts.ts";
+import { SHIP_SIZE } from "../consts/ships.consts.ts";
+import { Point } from "../types/point.types.ts";
+import { ShipDirection } from "../enums/ships.enums.ts";
 
 export const getShipTargetPositions = (ship: Ship): Point[] =>
   Array.from({ length: SHIP_SIZE[ship.type] }).map((_, index) => {
@@ -30,13 +31,7 @@ export const isAnyPositionOutOfBounds = (positions: Point[]): boolean =>
       point.y >= GRID_SIZE,
   );
 
-export const arePositionsInsidePositions = (
-  currentPositions: Point[],
-  positions: Point[],
-): boolean =>
-  currentPositions.some((currentPosition) =>
-    positions.some(
-      (position) =>
-        currentPosition.x === position.x && currentPosition.y === position.y,
-    ),
-  );
+export const arePositionsUnique = (positions: Point[]): boolean => {
+  const uniquePositions = new Set(positions.map((p) => `${p.x},${p.y}`));
+  return uniquePositions.size === positions.length;
+};
