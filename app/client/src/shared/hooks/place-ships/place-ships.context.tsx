@@ -9,7 +9,6 @@ export type PlaceShipsState = {
   setPreviewShipId: (id: string) => void;
   getLockedPositions: (ignoreShip: string) => Point[];
   setRandomShipPositions: () => void;
-  onReady: () => void;
 };
 
 export const PlaceShipsContext =

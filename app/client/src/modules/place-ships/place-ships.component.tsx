@@ -3,6 +3,7 @@ import {
   ContainerComponent,
   Cursor,
   EventMode,
+  FLEX_ALIGN,
   FLEX_JUSTIFY,
   FlexContainerComponent,
   Point,
@@ -28,7 +29,6 @@ export const PlaceShipsComponent: React.FC = () => {
     myShips,
     setPreviewShipId,
     getLockedPositions,
-    onReady,
     setRandomShipPositions,
   } = usePlaceShips();
 
@@ -138,17 +138,19 @@ export const PlaceShipsComponent: React.FC = () => {
     setRandomShipPositions();
   }, [setRandomShipPositions]);
 
+  const boldTimeout = useMemo(() => {
+    if (timeout >= 20) return true;
+    return timeout % 2 === 0;
+  }, [timeout]);
+
   return (
     <ContainerComponent>
       <FlexContainerComponent
         justify={FLEX_JUSTIFY.CENTER}
-        direction="x"
-        size={{ width: 137, height: 10 }}
-        position={{
-          x: 155,
-        }}
+        align={FLEX_ALIGN.CENTER}
+        size={{ width: getSize().width, height: 12 }}
       >
-        <TextComponent text={`${timeout}`} />
+        <TextComponent text={`${timeout}`} bold={boldTimeout} />
       </FlexContainerComponent>
       <GridComponent
         leftInteractive={Boolean(previewShipId)}
@@ -162,10 +164,7 @@ export const PlaceShipsComponent: React.FC = () => {
       >
         {renderShips}
       </ContainerComponent>
-      {/*<PlaceShipsScreenComponent />*/}
       <ShipsScreensComponent />
-      {/*<ShipsComponent />*/}
-      {/*<LifeComponent />*/}
       <ContainerComponent
         position={{
           y: 17 * 8 + 18,
@@ -225,14 +224,7 @@ export const PlaceShipsComponent: React.FC = () => {
               <TextComponent
                 text={`Position your (${remainingShipsToPlace.length}) ships`}
               />
-            ) : (
-              <TextComponent
-                text={`Ready to play?`}
-                eventMode={EventMode.STATIC}
-                cursor={Cursor.POINTER}
-                onPointerDown={onReady}
-              />
-            )}
+            ) : null}
           </FlexContainerComponent>
         )}
       </ContainerComponent>

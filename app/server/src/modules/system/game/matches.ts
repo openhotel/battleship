@@ -57,18 +57,26 @@ export const matches = () => {
       });
     };
 
-    const stop = (userId: string) => {
+    const stop = (userId?: string) => {
       System.tasks.remove(placingSipsDelayTaskId);
 
       delete $matchMap[match.id];
 
-      const opponentId = match.opponents.find(
-        (opponentId) => userId !== opponentId,
-      );
-      System.game.pool.addUser(opponentId);
+      if (userId) {
+        const opponentId = match.opponents.find(
+          (opponentId) => userId !== opponentId,
+        );
+        System.game.pool.addUser(opponentId);
+      } else {
+        match.opponents.forEach((opponentId) => {
+          System.game.pool.addUser(opponentId);
+        });
+      }
     };
 
-    const setShips = (opponentId: string, ships: Ship[]) => {};
+    const setShips = (opponentId: string, ships: Ship[]) => {
+      return false;
+    };
 
     const getObject = (): Match => match;
 
@@ -76,6 +84,7 @@ export const matches = () => {
       start,
       stop,
       getObject,
+      setShips,
     };
   };
 

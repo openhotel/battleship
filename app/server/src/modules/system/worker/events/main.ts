@@ -1,3 +1,3 @@
-import { readyPlacingEvent } from "./ready-placing.event.ts";
+import { updateShipsEvent } from "./update-ships.event.ts";
 
-export const eventList = [readyPlacingEvent];
+export const eventList = [updateShipsEvent];

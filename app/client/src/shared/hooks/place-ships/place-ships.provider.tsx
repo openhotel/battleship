@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { PlaceShipsContext } from "./place-ships.context";
 import { PlaceShipsComponent } from "modules/place-ships";
 import { Ship } from "shared/types";
-import { Event, ShipDirection, ShipType } from "shared/enums";
+import { Event, ShipDirection } from "shared/enums";
 import {
   arePositionsInsidePositions,
   getRandomNumber,
@@ -22,6 +22,15 @@ export const PlaceShipsProvider: React.FunctionComponent<GameProps> = ({
 
   const [myShips, setMyShips] = useState<Ship[]>([]);
   const [previewShipId, setPreviewShipId] = useState<string>(null);
+
+  useEffect(() => {
+    const toUpdateShips = myShips.filter((ship) => ship.position);
+    if (!toUpdateShips.length) return;
+
+    emit(Event.UPDATE_SHIPS, {
+      ships: toUpdateShips,
+    });
+  }, [myShips]);
 
   const initMyShips = useCallback(() => {
     setMyShips(
@@ -104,12 +113,6 @@ export const PlaceShipsProvider: React.FunctionComponent<GameProps> = ({
     setMyShips(list);
   }, [myShips, setMyShips]);
 
-  const onReady = useCallback(() => {
-    emit(Event.READY_PLACING, {
-      ships: myShips[0],
-    });
-  }, [myShips, emit]);
-
   return (
     <PlaceShipsContext.Provider
       value={{
@@ -119,7 +122,6 @@ export const PlaceShipsProvider: React.FunctionComponent<GameProps> = ({
         setPreviewShipId,
         getLockedPositions,
         setRandomShipPositions,
-        onReady,
       }}
       children={<PlaceShipsComponent />}
     />
