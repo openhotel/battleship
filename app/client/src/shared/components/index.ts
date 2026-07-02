@@ -9,7 +9,6 @@ export * from "./loading-bar";
 export * from "./logo";
 export * from "./loop-bar";
 export * from "./nester";
-export * from "./render-ships";
 export * from "./ship";
 export * from "./text";
 ////////////////////////////////////////////////////////////////////////////////

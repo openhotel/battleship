@@ -1,9 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { PlaceShipsProvider, useGame, useProxy } from "shared/hooks";
+import { PlaceShipsProvider, useGame } from "shared/hooks";
+import { useProxy } from "@oh/game-utils/client";
 
 import { Event } from "shared/enums";
 import { SearchForMatchComponent } from "modules/search-for-match";
 import { MatchComponent } from "modules/match";
+import { GraphicsComponent, GraphicType } from "@openhotel/pixi-components";
 
 export const NavigatorComponent: React.FC = () => {
   const { on } = useProxy();

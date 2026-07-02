@@ -527,6 +527,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@jsr/std__datetime@npm:^0.225.7":
+  version: 0.225.7
+  resolution: "@jsr/std__datetime@npm:0.225.7::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__datetime%2F0.225.7.tgz"
+  checksum: 10c0/6a09d2e144f94d77375cad6154b323f5b3277c1878ada3569b9bd0e89cf3718a51231e225d91a3979727c46f48a440294b71e74f26ed93e44aed0d9a1d8fc71d
+  languageName: node
+  linkType: hard
+
 "@mswjs/interceptors@npm:^0.40.0":
   version: 0.40.0
   resolution: "@mswjs/interceptors@npm:0.40.0"
@@ -560,6 +567,21 @@ __metadata:
   dependencies:
     semver: "npm:^7.3.5"
   checksum: 10c0/c90935d5ce670c87b6b14fab04a965a3b8137e585f8b2a6257263bd7f97756dd736cb165bb470e5156a9e718ecd99413dccc54b1138c1a46d6ec7cf325982fe5
+  languageName: node
+  linkType: hard
+
+"@oh/game-utils@npm:@jsr/oh__game-utils@^0.0.2":
+  version: 0.0.2
+  resolution: "@jsr/oh__game-utils@npm:0.0.2::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Foh__game-utils%2F0.0.2.tgz"
+  dependencies:
+    "@jsr/std__datetime": "npm:^0.225.7"
+    "@openhotel/pixi-components": "npm:0.0.29"
+    "@types/react": "npm:19.2.17"
+    react: "npm:19.2.7"
+    ulidx: "npm:2.4.1"
+    yaml: "npm:2.9.0"
+    zustand: "npm:5.0.14"
+  checksum: 10c0/cc03bdca471a8a718fdf1741f99bf97b4cb32d902ea76d051244dcbec992e82e180a7da501c13b4a681563ca0b8be8f19db56bfce8e1b01bd1b0767d1e166e61
   languageName: node
   linkType: hard
 
@@ -608,6 +630,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@openhotel/pixi-components@npm:0.0.29":
+  version: 0.0.29
+  resolution: "@openhotel/pixi-components@npm:0.0.29"
+  dependencies:
+    "@pixi/react": "npm:8.0.5"
+    dayjs: "npm:1.11.13"
+    pixi.js: "npm:8.14.3"
+    react: "npm:19.2.3"
+    react-dom: "npm:19.2.3"
+    zustand: "npm:^5.0.3"
+  checksum: 10c0/96f2365b8a0bf92d38be24e8c48974fd91828eb09b3d4332fdccbaccc8e157f8856f5972f9722ffcec1489ec653d94b78d9785e3a6f821d6d333b82a4b5ccb4d
+  languageName: node
+  linkType: hard
+
 "@pixi/colord@npm:^2.9.6":
   version: 2.9.6
   resolution: "@pixi/colord@npm:2.9.6"
@@ -625,6 +661,19 @@ __metadata:
     pixi.js: ^8.2.6
     react: ">=19.0.0"
   checksum: 10c0/f015c4bc3ecd597dc59416c3cbf36e8a71c6a646db12dc0de041ef961de1418ae5d518b1b2e13bc42d7c35ead92d98460efc7abd582f7d912ee5eb0aa0b483f5
+  languageName: node
+  linkType: hard
+
+"@pixi/react@npm:8.0.5":
+  version: 8.0.5
+  resolution: "@pixi/react@npm:8.0.5"
+  dependencies:
+    its-fine: "npm:^2.0.0"
+    react-reconciler: "npm:0.31.0"
+  peerDependencies:
+    pixi.js: ^8.2.6
+    react: ">=19.0.0"
+  checksum: 10c0/ca139da0f57c122d7db8cc71e94fcf009987b11efb2e940d96afb2f2501b518112c7d7336ddc4ceb03500358f5c510fe8480bd8c4935dc04e5554e03a885fad8
   languageName: node
   linkType: hard
 
@@ -925,7 +974,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-reconciler@npm:^0.28.0":
+"@types/react-reconciler@npm:^0.28.0, @types/react-reconciler@npm:^0.28.9":
   version: 0.28.9
   resolution: "@types/react-reconciler@npm:0.28.9"
   peerDependencies:
@@ -940,6 +989,15 @@ __metadata:
   dependencies:
     csstype: "npm:^3.0.2"
   checksum: 10c0/5fa7236356b1476de03519c66ef65d4fd904826956105619e2ad60cb0b55ae7b251dd5fff02234076225b5e15333d0d936bf9dbe1d461406f8a2ba01c197ddcd
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:19.2.17":
+  version: 19.2.17
+  resolution: "@types/react@npm:19.2.17"
+  dependencies:
+    csstype: "npm:^3.2.2"
+  checksum: 10c0/bc2c4af96b3e480604424de70d5ebda90c5f4b485df471858c0bc2d7d70364b606ec3c4d8579f94f01aa0c6c0591f56bcf14cba5689f5eea4b74250ccdc3a232
   languageName: node
   linkType: hard
 
@@ -1274,6 +1332,13 @@ __metadata:
   version: 3.1.3
   resolution: "csstype@npm:3.1.3"
   checksum: 10c0/80c089d6f7e0c5b2bd83cf0539ab41474198579584fa10d86d0cafe0642202343cbc119e076a0b1aece191989477081415d66c9fefbf3c957fc2fc4b7009f248
+  languageName: node
+  linkType: hard
+
+"csstype@npm:^3.2.2":
+  version: 3.2.3
+  resolution: "csstype@npm:3.2.3"
+  checksum: 10c0/cd29c51e70fa822f1cecd8641a1445bed7063697469d35633b516e60fe8c1bde04b08f6c5b6022136bb669b64c63d4173af54864510fbb4ee23281801841a3ce
   languageName: node
   linkType: hard
 
@@ -1746,6 +1811,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"its-fine@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "its-fine@npm:2.0.0"
+  dependencies:
+    "@types/react-reconciler": "npm:^0.28.9"
+  peerDependencies:
+    react: ^19.0.0
+  checksum: 10c0/1ff1ff3257c0c7eb115c9c26cf0506eb84162edc1a63d3136780d146f7c7833298b240d0fcb46888909773f1a7d16539e0c03f2482cff1a5a502d6436686fe21
+  languageName: node
+  linkType: hard
+
 "jackspeak@npm:^3.1.2":
   version: 3.4.3
   resolution: "jackspeak@npm:3.4.3"
@@ -2138,6 +2214,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pixi.js@npm:8.14.3":
+  version: 8.14.3
+  resolution: "pixi.js@npm:8.14.3"
+  dependencies:
+    "@pixi/colord": "npm:^2.9.6"
+    "@types/css-font-loading-module": "npm:^0.0.12"
+    "@types/earcut": "npm:^3.0.0"
+    "@webgpu/types": "npm:^0.1.40"
+    "@xmldom/xmldom": "npm:^0.8.10"
+    earcut: "npm:^3.0.2"
+    eventemitter3: "npm:^5.0.1"
+    gifuct-js: "npm:^2.1.2"
+    ismobilejs: "npm:^1.1.1"
+    parse-svg-path: "npm:^0.1.2"
+    tiny-lru: "npm:^11.4.5"
+  checksum: 10c0/d9a729d418851a4dc71ebb7d9ce7aa5a48efbca6db82f7e99655877fc3632b8e1780e7ce79e6c1058d5736d56d07573e25ff5f140dc006406997818c2092deb5
+  languageName: node
+  linkType: hard
+
 "pixi.js@npm:^8.9.1":
   version: 8.14.0
   resolution: "pixi.js@npm:8.14.0"
@@ -2215,6 +2310,17 @@ __metadata:
   peerDependencies:
     react: ^19.1.0
   checksum: 10c0/3e26e89bb6c67c9a6aa86cb888c7a7f8258f2e347a6d2a15299c17eb16e04c19194e3452bc3255bd34000a61e45e2cb51e46292392340432f133e5a5d2dfb5fc
+  languageName: node
+  linkType: hard
+
+"react-dom@npm:19.2.3":
+  version: 19.2.3
+  resolution: "react-dom@npm:19.2.3"
+  dependencies:
+    scheduler: "npm:^0.27.0"
+  peerDependencies:
+    react: ^19.2.3
+  checksum: 10c0/dc43f7ede06f46f3acc16ee83107c925530de9b91d1d0b3824583814746ff4c498ea64fd65cd83aba363205268adff52e2827c582634ae7b15069deaeabc4892
   languageName: node
   linkType: hard
 
@@ -2311,6 +2417,20 @@ __metadata:
   version: 19.1.0
   resolution: "react@npm:19.1.0"
   checksum: 10c0/530fb9a62237d54137a13d2cfb67a7db6a2156faed43eecc423f4713d9b20c6f2728b026b45e28fcd72e8eadb9e9ed4b089e99f5e295d2f0ad3134251bdd3698
+  languageName: node
+  linkType: hard
+
+"react@npm:19.2.3":
+  version: 19.2.3
+  resolution: "react@npm:19.2.3"
+  checksum: 10c0/094220b3ba3a76c1b668f972ace1dd15509b157aead1b40391d1c8e657e720c201d9719537375eff08f5e0514748c0319063392a6f000e31303aafc4471f1436
+  languageName: node
+  linkType: hard
+
+"react@npm:19.2.7":
+  version: 19.2.7
+  resolution: "react@npm:19.2.7"
+  checksum: 10c0/0bd0e2f1bbd4ba97561c6597bf8a5fec05e6476fe61e165c1065598d16668efc6715205599c94d3ddd49d36cb0f21cbf1b9bcc18ee840b805ce222c3e8d558ac
   languageName: node
   linkType: hard
 
@@ -2420,6 +2540,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
+    "@oh/game-utils": "npm:@jsr/oh__game-utils@^0.0.2"
     "@oh/queue": "npm:@jsr/oh__queue@1.1.1"
     "@openhotel/pixi-components": "npm:0.0.24"
     "@types/howler": "npm:2.2.12"
@@ -2463,6 +2584,13 @@ __metadata:
   version: 0.26.0
   resolution: "scheduler@npm:0.26.0"
   checksum: 10c0/5b8d5bfddaae3513410eda54f2268e98a376a429931921a81b5c3a2873aab7ca4d775a8caac5498f8cbc7d0daeab947cf923dbd8e215d61671f9f4e392d34356
+  languageName: node
+  linkType: hard
+
+"scheduler@npm:^0.27.0":
+  version: 0.27.0
+  resolution: "scheduler@npm:0.27.0"
+  checksum: 10c0/4f03048cb05a3c8fddc45813052251eca00688f413a3cee236d984a161da28db28ba71bd11e7a3dd02f7af84ab28d39fb311431d3b3772fed557945beb00c452
   languageName: node
   linkType: hard
 
@@ -2993,6 +3121,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"yaml@npm:2.9.0":
+  version: 2.9.0
+  resolution: "yaml@npm:2.9.0"
+  bin:
+    yaml: bin.mjs
+  checksum: 10c0/f340718df45e97a9551b9bf9dac61c80050bc464513b710debfb5067c380c8472e3b67809cffacb4ab5ffb5e66ef9310816c88b05f371cec60abfedd8c88e0a2
+  languageName: node
+  linkType: hard
+
 "yargs-parser@npm:^21.1.1":
   version: 21.1.1
   resolution: "yargs-parser@npm:21.1.1"
@@ -3019,6 +3156,27 @@ __metadata:
   version: 2.1.3
   resolution: "yoctocolors-cjs@npm:2.1.3"
   checksum: 10c0/584168ef98eb5d913473a4858dce128803c4a6cd87c0f09e954fa01126a59a33ab9e513b633ad9ab953786ed16efdd8c8700097a51635aafaeed3fef7712fa79
+  languageName: node
+  linkType: hard
+
+"zustand@npm:5.0.14":
+  version: 5.0.14
+  resolution: "zustand@npm:5.0.14"
+  peerDependencies:
+    "@types/react": ">=18.0.0"
+    immer: ">=9.0.6"
+    react: ">=18.0.0"
+    use-sync-external-store: ">=1.2.0"
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    immer:
+      optional: true
+    react:
+      optional: true
+    use-sync-external-store:
+      optional: true
+  checksum: 10c0/89de0c8119f1e0861b2f896a0b4df0d67994a373ecee02628d4e7b97cee1885207f646917d3ede395c3a5083316d48846855cfbc84aced7cd23a6db3238930a8
   languageName: node
   linkType: hard
 

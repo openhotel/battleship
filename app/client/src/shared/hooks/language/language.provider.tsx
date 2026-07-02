@@ -1,11 +1,11 @@
 import React, { ReactNode, useCallback, useEffect, useState } from "react";
-import { LoaderComponent } from "shared/components";
 import { LanguageContext } from "./language.context";
-import { useConfig } from "shared/hooks";
+import { useConfig } from "@oh/game-utils/client";
 import { initReactI18next } from "react-i18next";
 import HttpBackend from "i18next-http-backend";
 import i18next from "i18next";
 import { Language } from "shared/enums/language.enumts";
+import LoaderComponent from "../../components/loader/loader.component.tsx";
 
 type LanguageProps = {
   children: ReactNode;

@@ -9,7 +9,7 @@ import {
   getShipTargetPositions,
   isAnyPositionOutOfBounds,
 } from "shared/utils";
-import { useProxy } from "shared/hooks/proxy";
+import { useProxy } from "@oh/game-utils/client";
 import { useGame } from "../game";
 
 type GameProps = {

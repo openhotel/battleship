@@ -5,7 +5,8 @@
   },
   "imports": {
     "@oh/queue": "jsr:@oh/queue@1.1.1",
-    "@oh/utils": "jsr:@oh/utils@1.5.23",
+    "@oh/utils": "jsr:@oh/utils@1.5.26",
+    "@oh/game-utils": "jsr:@oh/game-utils@0.0.1",
 
     "@da/socket": "jsr:@da/socket@2.3.0",
     "@da/bcrypt": "jsr:@da/bcrypt@1.0.0",

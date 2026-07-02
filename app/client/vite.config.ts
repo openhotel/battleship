@@ -22,12 +22,20 @@ export default defineConfig({
       },
     },
     hmr: true,
-    allowedHosts: ["hotel.local"],
   },
   plugins: [react(), reactRefresh(), tsconfigPaths()],
   root: "./src",
   base: "",
   publicDir: "./assets/",
+  resolve: {
+    alias: {
+      "npm:react@19.2.7": "react",
+      "npm:@openhotel/pixi-components@0.0.29": "@openhotel/pixi-components",
+      "npm:yaml@2.9.0": "yaml",
+      "npm:ulidx@2.4.1": "ulidx",
+      "npm:zustand@5.0.14": "zustand",
+    },
+  },
   build: {
     outDir: "../../../build/client",
     emptyOutDir: false, // also necessary

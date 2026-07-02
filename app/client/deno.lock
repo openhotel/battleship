@@ -21,6 +21,7 @@
     ],
     "packageJson": {
       "dependencies": [
+        "npm:@jsr/oh__game-utils@^0.0.2",
         "npm:@jsr/oh__queue@1.1.1",
         "npm:@openhotel/pixi-components@0.0.24",
         "npm:@types/howler@2.2.12",

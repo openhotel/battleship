@@ -21,6 +21,7 @@
     "vite-tsconfig-paths": "5.1.4"
   },
   "dependencies": {
+    "@oh/game-utils": "npm:@jsr/oh__game-utils@^0.0.2",
     "@oh/queue": "npm:@jsr/oh__queue@1.1.1",
     "@openhotel/pixi-components": "0.0.24",
     "howler": "2.2.4",

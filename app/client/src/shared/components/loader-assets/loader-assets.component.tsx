@@ -57,6 +57,7 @@ export const LoaderAssetsComponent: React.FC<Props> = ({
     })();
   }, [loaderItems, setCurrentText, onDone, t]);
 
+  return children;
   return useMemo(
     () =>
       currentText ? (

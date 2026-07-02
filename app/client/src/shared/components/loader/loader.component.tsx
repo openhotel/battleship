@@ -11,7 +11,8 @@ type Props = {
   message: string;
 } & PropsWithChildren;
 
-export const LoaderComponent: React.FC<Props> = ({ message, children }) => {
+const LoaderComponent: React.FC<Props> = ({ message, children }) => {
+  // return message ? null : children;
   return useMemo(
     () =>
       message ? (
@@ -29,3 +30,4 @@ export const LoaderComponent: React.FC<Props> = ({ message, children }) => {
     [message, children],
   );
 };
+export default LoaderComponent;
